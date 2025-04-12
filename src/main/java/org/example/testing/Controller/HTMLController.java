@@ -40,9 +40,29 @@ public class HTMLController {
     }
 
     @GetMapping("/listar-personas")
-    public String listarPersonas(Model model) {
-        List<Persona> personas = PersonaController.obtenerPersonas();
-        model.addAttribute("personas", personas);
+    public String listarPersonas(
+            Model model,
+            @RequestParam(defaultValue = "0") int page) {
+
+        List<Persona> todasPersonas = PersonaController.obtenerPersonas();
+        int size = 3; // Tamaño fijo de página
+
+        // Calcular índices seguros
+        int start = page * size;
+        int end = Math.min(start + size, todasPersonas.size());
+
+        // Obtener sublista para la página actual
+        List<Persona> personasPagina = todasPersonas.subList(start, end);
+
+        // Calcular total de páginas
+        int totalPages = (int) Math.ceil((double) todasPersonas.size() / size);
+
+        // Agregar atributos al modelo
+        model.addAttribute("personas", personasPagina);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("totalPersonas", todasPersonas.size());
+
         return "listar-personas";
     }
 

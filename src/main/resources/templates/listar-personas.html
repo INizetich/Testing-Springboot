@@ -12,6 +12,8 @@
 <body>
 
 <div class="container" th:unless="${personas.isEmpty()}">
+
+
     <a th:href="@{/menu}" class="back-btn">
         <i class="fas fa-arrow-left"></i> Volver al Menú
     </a>
@@ -35,7 +37,7 @@
 
     <!-- Lista de personas -->
     <div class="personas-list">
-        <div th:each="persona, stat : ${personas}" th:if="${stat.index < 10}" class="persona-item">
+        <div th:each="persona, stat : ${personas}" th:if="${stat.index < 5}" class="persona-item">
             <div class="persona-info">
                 <p><strong>Nombre:</strong> <span data-field="nombre" th:text="${persona.nombre}"></span></p>
                 <p><strong>Apellido:</strong> <span data-field="apellido" th:text="${persona.apellido}"></span></p>
@@ -54,8 +56,27 @@
     </div>
 
     <!-- Paginación -->
-    <div class="pagination" th:if="${personas.size() > 10}">
-        <span>Mostrando 10 de <span th:text="${personas.size()}"></span> personas</span>
+    <div class="pagination" th:if="${totalPersonas > 3}">
+        <span>Mostrando 5 de <span th:text="${totalPersonas}"></span> personas</span>
+        <div class="pagination-controls">
+            <a th:href="@{/listar-personas(page=${currentPage > 0 ? currentPage - 1 : 0})}"
+               class="page-btn"
+               th:classappend="${currentPage == 0} ? 'disabled' : ''">
+                <i class="fas fa-chevron-left"></i> Anterior
+            </a>
+            <span th:text="${currentPage + 1} + ' / ' + ${totalPages}"></span>
+            <a th:href="@{/listar-personas(page=${currentPage < totalPages - 1 ? currentPage + 1 : currentPage})}"
+               class="page-btn"
+               th:classappend="${currentPage == totalPages - 1} ? 'disabled' : ''">
+                Siguiente <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+    <div class="global-footer">
+        <p>Guía 3 JDBC |
+            <a href="https://github.com/ValeroTomas " target="_blank" class="autor-link">Tomás Valero</a> |
+            <a href="https://github.com/INizetich" target="_blank" class="autor-link">Ignacio Nizetich</a>
+        </p>
     </div>
 </div>
 
@@ -89,13 +110,6 @@
             <button class="submit-btn primary" id="feedbackOkBtn">Aceptar</button>
         </div>
     </div>
-</div>
-
-<div class="global-footer">
-    <p>Guía 3 JDBC |
-        <a href="https://github.com/ValeroTomas " target="_blank" class="autor-link">Tomás Valero</a> |
-        <a href="https://github.com/INizetich" target="_blank" class="autor-link">Ignacio Nizetich</a>
-    </p>
 </div>
 
 <script th:src="@{/js/listar-personas.js}"></script>
