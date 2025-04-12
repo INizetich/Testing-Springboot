@@ -30,17 +30,28 @@ public class PersonaDAO {
         Persona persona = null;
         List<Persona> listaPersonas = new ArrayList<>();
         String sql = "SELECT * FROM personas";
-        try(Statement statement = conn.createStatement()){
+        try (Statement statement = conn.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
 
-            while (rs.next()){
-                persona = new Persona(rs.getString("nombre"),rs.getString("apellido"),rs.getString("dni"),rs.getString("email"));
-              listaPersonas.add(persona);
+            while (rs.next()) {
+                persona = new Persona(rs.getString("nombre"), rs.getString("apellido"), rs.getString("dni"), rs.getString("email"));
+                listaPersonas.add(persona);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return listaPersonas;
+    }
+
+    public boolean eliminarPersona(String dni) {
+        String sql = "DELETE FROM personas WHERE dni="+dni;
+        try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

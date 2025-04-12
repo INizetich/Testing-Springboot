@@ -1,163 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Formulario de Persona</title>-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">-->
-<!--    <link rel="stylesheet" th:href="@{/css/styles.css}">-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="form-container">-->
-<!--    <h1>INFORMACIÓN PERSONA</h1>-->
-<!--    <form id="personaForm" action="/api/personas" method="post" novalidate>-->
-<!--        &lt;!&ndash; Campo Nombre &ndash;&gt;-->
-<!--        <div class="form-group">-->
-<!--            <label for="nombre">Nombre:</label>-->
-<!--            <input type="text" id="nombre" name="nombre" required-->
-<!--                   pattern="[A-Za-zÁ-Úá-úñÑ]{2,50}"-->
-<!--                   title="Solo letras (2-50 caracteres), sin números ni caracteres especiales"-->
-<!--                   onkeypress="return bloqueaCaracteresEspeciales(event)">-->
-<!--            <span class="error-message" id="nombre-error"></span>-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash; Campo Apellido &ndash;&gt;-->
-<!--        <div class="form-group">-->
-<!--            <label for="apellido">Apellido:</label>-->
-<!--            <input type="text" id="apellido" name="apellido" required-->
-<!--                   pattern="[A-Za-zÁ-Úá-úñÑ]{2,50}"-->
-<!--                   title="Solo letras (2-50 caracteres), sin números ni caracteres especiales"-->
-<!--                   onkeypress="return bloqueaCaracteresEspeciales(event)">-->
-<!--            <span class="error-message" id="apellido-error"></span>-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash; Campo DNI &ndash;&gt;-->
-<!--        <div class="form-group">-->
-<!--            <label for="dni">DNI:</label>-->
-<!--            <input type="text" id="dni" name="dni" required-->
-<!--                   pattern="\d{8}"-->
-<!--                   title="Debe contener exactamente 8 dígitos"-->
-<!--                   maxlength="8"-->
-<!--                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">-->
-<!--            <span class="error-message" id="dni-error"></span>-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash; Campo Email &ndash;&gt;-->
-<!--        <div class="form-group">-->
-<!--            <label for="email">Email:</label>-->
-<!--            <input type="email" id="email" name="email" required-->
-<!--                   title="Ingrese un email válido">-->
-<!--            <span class="error-message" id="email-error"></span>-->
-<!--        </div>-->
-
-<!--        <button type="submit" class="submit-btn">Enviar Datos</button>-->
-<!--    </form>-->
-<!--</div>-->
-
-<!--<script th:inline="javascript">-->
-<!--    document.addEventListener('DOMContentLoaded', function() {-->
-<!--        const form = document.getElementById('personaForm');-->
-
-<!--        // Bloquea caracteres especiales en nombre y apellido-->
-<!--        window.bloqueaCaracteresEspeciales = function(event) {-->
-<!--            const charCode = event.which || event.keyCode;-->
-<!--            const charStr = String.fromCharCode(charCode);-->
-<!--            return /[A-Za-zÁ-Úá-úñÑ\s]/.test(charStr);-->
-<!--        };-->
-
-<!--        // Validación en tiempo real-->
-<!--        form.querySelectorAll('input').forEach(input => {-->
-<!--            input.addEventListener('input', function() {-->
-<!--                validateField(this);-->
-<!--            });-->
-
-<!--            input.addEventListener('blur', function() {-->
-<!--                validateField(this);-->
-<!--            });-->
-<!--        });-->
-
-<!--        // Validación al enviar-->
-<!--        form.addEventListener('submit', function(e) {-->
-<!--            let isValid = true;-->
-<!--            form.querySelectorAll('input').forEach(input => {-->
-<!--                if (!validateField(input)) {-->
-<!--                    isValid = false;-->
-<!--                }-->
-<!--            });-->
-
-<!--            if (!isValid) {-->
-<!--                e.preventDefault();-->
-<!--                // Mostrar error general si es necesario-->
-<!--                alert("Por favor corrija los errores antes de enviar");-->
-<!--            }-->
-<!--        });-->
-
-<!--        function validateField(field) {-->
-<!--            const errorElement = document.getElementById(`${field.id}-error`);-->
-<!--            let isValid = true;-->
-<!--            field.value = field.value.trim();-->
-
-<!--            // Validaciones específicas por campo-->
-<!--            switch(field.id) {-->
-<!--                case 'nombre':-->
-<!--                case 'apellido':-->
-<!--                    if (!/^[A-Za-zÁ-Úá-úñÑ]{2,50}$/.test(field.value)) {-->
-<!--                        showError(field, errorElement, "Solo letras (2-50 caracteres)");-->
-<!--                        isValid = false;-->
-<!--                    }-->
-<!--                    break;-->
-
-<!--                case 'dni':-->
-<!--                    if (!/^\d{8}$/.test(field.value)) {-->
-<!--                        showError(field, errorElement, "Debe tener 8 dígitos");-->
-<!--                        isValid = false;-->
-<!--                    }-->
-<!--                    break;-->
-
-<!--                case 'email':-->
-<!--                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {-->
-<!--                        showError(field, errorElement, "Email no válido");-->
-<!--                        isValid = false;-->
-<!--                    }-->
-<!--                    break;-->
-<!--            }-->
-
-<!--            // Validación de campo requerido-->
-<!--            if (field.required && !field.value) {-->
-<!--                showError(field, errorElement, "Este campo es requerido");-->
-<!--                isValid = false;-->
-<!--            }-->
-
-<!--            if (isValid) {-->
-<!--                hideError(field, errorElement);-->
-<!--            }-->
-
-<!--            return isValid;-->
-<!--        }-->
-
-<!--        function showError(field, errorElement, message) {-->
-<!--            field.classList.add('error');-->
-<!--            errorElement.textContent = message;-->
-<!--        }-->
-
-<!--        function hideError(field, errorElement) {-->
-<!--            field.classList.remove('error');-->
-<!--            errorElement.textContent = '';-->
-<!--        }-->
-<!--    });-->
-<!--</script>-->
-
-
-<!--<script>-->
-<!--    const params = new URLSearchParams(window.location.search);-->
-<!--    if (params.get('exito') === 'true') {-->
-<!--        alert("¡Persona registrada con éxito!");-->
-<!--    }-->
-<!--</script>-->
-<!--</body>-->
-<!--</html>-->
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -165,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Persona</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 <div class="form-container">
+    <a th:href="@{/menu}" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Volver al Menú
+    </a>
+
     <h1>INFORMACIÓN PERSONA</h1>
+
     <form id="personaForm" action="/api/personas/guardar" method="post" novalidate>
         <!-- Campo Nombre -->
         <div class="form-group">

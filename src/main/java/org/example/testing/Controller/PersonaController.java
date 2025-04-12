@@ -36,6 +36,9 @@ public class PersonaController {
         return new RedirectView("/menu");
     }
 
+    public static boolean eliminarPersona(String dni) {
+        return personaDAO.eliminarPersona(dni);
+    }
 
     public static List<Persona> obtenerPersonas(){
         List<Persona> listaPersonas = personaDAO.obtenerTodasLasPersonas();

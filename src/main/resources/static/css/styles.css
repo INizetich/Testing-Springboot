@@ -88,6 +88,22 @@ input:focus {
     background-color: var(--primary-dark);
 }
 
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.back-btn:hover {
+    color: var(--primary-dark);
+    transform: translateX(-3px);
+}
+
 .error {
     border-color: #ff3860 !important;
 }
@@ -114,4 +130,5 @@ input:focus {
         font-size: 1.5rem;
     }
 }
+
 
