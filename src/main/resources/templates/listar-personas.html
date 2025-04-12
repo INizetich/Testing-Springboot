@@ -16,10 +16,10 @@
     <div class="personas-list">
         <div th:each="persona : ${personas}" class="persona-item">
             <div class="persona-info">
-                <p><strong>Nombre:</strong> <span th:text="${persona.nombre}"></span></p>
-                <p><strong>Apellido:</strong> <span th:text="${persona.apellido}"></span></p>
-                <p><strong>DNI:</strong> <span th:text="${persona.dni}"></span></p>
-                <p><strong>Email:</strong> <span th:text="${persona.email}"></span></p>
+                <p><strong>Nombre:</strong> <span data-field="nombre" th:text="${persona.nombre}"></span></p>
+                <p><strong>Apellido:</strong> <span data-field="apellido" th:text="${persona.apellido}"></span></p>
+                <p><strong>DNI:</strong> <span data-field="dni" th:text="${persona.dni}"></span></p>
+                <p><strong>Email:</strong> <span data-field="email" th:text="${persona.email}"></span></p>
             </div>
             <div class="action-buttons">
                 <a th:href="@{/editar-persona/__${persona.dni}__}" class="edit-btn">
@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<!-- Modal de Confirmación -->
+<!-- Modal de Confirmación (se mantiene igual) -->
 <div id="deleteModal" class="modal">
     <div class="modal-content" onclick="event.stopPropagation()">
         <h3>Confirmar Eliminación</h3>
