@@ -1,0 +1,47 @@
+/* Estilos específicos para el menú */
+.menu-container {
+    max-width: 500px;
+}
+
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+    font-size: 1rem;
+    text-decoration: none;
+    color: white;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-agregar {
+    background-color: #4361ee;
+}
+
+.btn-eliminar {
+    background-color: #f72585;
+}
+
+.btn-buscar {
+    background-color: #4cc9f0;
+}
+
+.btn-listar {
+    background-color: #4895ef;
+}
