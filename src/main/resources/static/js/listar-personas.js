@@ -39,13 +39,12 @@ document.addEventListener('DOMContentLoaded', function(e) {
     cancelBtn.addEventListener('click', function(e) {
         e.preventDefault();
         hideModal(deleteModal);
-        showFeedback('Operación cancelada', 'La eliminación fue cancelada.');
     });
 
     confirmBtn.addEventListener('click', function(e) {
         e.preventDefault();
 
-        if (confirmInput.value.trim().toUpperCase() === 'CONFIRMAR') {
+        if (confirmInput.value === 'CONFIRMAR') {
             // Enviar el DNI al backend para eliminar con verificación de seguridad
             fetch(`/eliminar-persona/${personaToDelete.dni}`, {
                 method: 'DELETE',
@@ -82,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     feedbackOkBtn.addEventListener('click', function(e) {
         e.preventDefault();
         hideModal(feedbackModal);
-        window.location.href = '/menu';
+        window.location.href = '/listar-personas';
     });
 
     // Filtrado y ordenación

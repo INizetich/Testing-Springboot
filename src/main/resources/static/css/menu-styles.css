@@ -1,8 +1,4 @@
 /* Estilos específicos para el menú */
-.menu-container {
-    max-width: 500px;
-    position: relative;
-}
 
 .menu-options {
     display: flex;
@@ -72,25 +68,6 @@
 
 .menu-footer:hover {
     opacity: 1; /* Se hace un poco más visible al pasar el mouse */
-}
-
-.global-footer {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    color: #656565;
-    font-size: 0.75rem;
-    font-weight: 300;
-    letter-spacing: 0.3px;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-    padding: 10px 0;
-}
-
-.global-footer:hover {
-    opacity: 0.8;
 }
 
 /* Asegura que los botones del menú no hereden estilos no deseados */

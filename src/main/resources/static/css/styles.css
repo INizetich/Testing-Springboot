@@ -19,11 +19,11 @@ body {
     background-color: var(--background);
     color: var(--text);
     line-height: 1.6;
-    padding: 20px;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
 
 .form-container {
@@ -33,7 +33,7 @@ body {
     padding: 2.5rem;
     width: 100%;
     max-width: 500px;
-    margin: 20px;
+    margin: 0 auto;
 }
 
 h1 {
@@ -102,6 +102,39 @@ input:focus {
 .back-btn:hover {
     color: var(--primary-dark);
     transform: translateX(-3px);
+}
+
+.autor-link {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    display: inline-block; /* Necesario para aplicar transform correctamente */
+}
+
+.autor-link:hover {
+    transform: translateY(-2px); /* Sutil levantamiento */
+    color: #25cc00; /* Opcional: cambio de color leve */
+}
+
+.global-footer {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #656565;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.global-footer:hover {
+    opacity: 0.8;
 }
 
 .error {
