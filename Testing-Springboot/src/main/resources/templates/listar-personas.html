@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Personas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/listar-personas.css}">
+</head>
+<body>
+
+<div class="container" th:unless="${personas.isEmpty()}">
+    <a th:href="@{/menu}" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Volver al Menú
+    </a>
+
+    <h1>Gestión de Personas</h1>
+
+    <!-- Filtros de búsqueda y ordenación -->
+    <div class="filters-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar por nombre...">
+            <button id="searchBtn"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="sort-options">
+            <label for="sortSelect">Ordenar:</label>
+            <select id="sortSelect">
+                <option value="asc">A-Z</option>
+                <option value="desc">Z-A</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Lista de personas -->
+    <div class="personas-list">
+        <div th:each="persona, stat : ${personas}" th:if="${stat.index < 10}" class="persona-item">
+            <div class="persona-info">
+                <p><strong>Nombre:</strong> <span data-field="nombre" th:text="${persona.nombre}"></span></p>
+                <p><strong>Apellido:</strong> <span data-field="apellido" th:text="${persona.apellido}"></span></p>
+                <p><strong>DNI:</strong> <span data-field="dni" th:text="${persona.dni}"></span></p>
+                <p><strong>Email:</strong> <span data-field="email" th:text="${persona.email}"></span></p>
+            </div>
+            <div class="action-buttons">
+                <a th:href="@{/editar-persona/__${persona.dni}__}" class="edit-btn">
+                    <i class="fas fa-pencil-alt"></i> Editar
+                </a>
+                <button class="delete-btn" th:data-dni="${persona.dni}">
+                    <i class="fas fa-trash"></i> Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Paginación -->
+    <div class="pagination" th:if="${personas.size() > 10}">
+        <span>Mostrando 10 de <span th:text="${personas.size()}"></span> personas</span>
+    </div>
+</div>
+
+<div th:if="${personas.isEmpty()}" class="empty-state-simple">
+    <i class="fas fa-inbox"></i>
+    <h3>No hay personas registradas</h3>
+    <a th:href="@{/menu}" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Volver al Menú
+    </a>
+</div>
+
+<!-- Modal de Confirmación -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <h3>Confirmar Eliminación</h3>
+        <p>Para eliminar esta persona, escriba <strong class="confirm-word">CONFIRMAR</strong> a continuación:</p>
+        <input type="text" id="confirmInput" class="confirm-input" placeholder="Escriba 'CONFIRMAR'">
+        <div class="modal-actions">
+            <button class="submit-btn secondary" id="cancelBtn">Cancelar</button>
+            <button class="submit-btn danger" id="confirmBtn">Eliminar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Feedback -->
+<div id="feedbackModal" class="modal">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <h3 id="feedbackTitle"></h3>
+        <p id="feedbackMessage"></p>
+        <div class="modal-actions">
+            <button class="submit-btn primary" id="feedbackOkBtn">Aceptar</button>
+        </div>
+    </div>
+</div>
+
+<div class="global-footer">
+    <p>Guía 3 JDBC |
+        <a href="https://github.com/ValeroTomas " target="_blank" class="autor-link">Tomás Valero</a> |
+        <a href="https://github.com/INizetich" target="_blank" class="autor-link">Ignacio Nizetich</a>
+    </p>
+</div>
+
+<script th:src="@{/js/listar-personas.js}"></script>
+</body>
+</html>
