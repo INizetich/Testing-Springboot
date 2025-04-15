@@ -9,6 +9,6 @@ RUN ls -l target
 # Etapa de ejecución
 FROM eclipse-temurin:21-jre
 WORKDIR /app
-COPY --from=build /app/target/Testing-Springboot-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/Testing-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
