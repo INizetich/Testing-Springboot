@@ -14,6 +14,11 @@ import java.util.Map;
 @Controller
 public class HTMLController {
 
+    @GetMapping("/demo")
+    public String demo(){
+        return "demo";
+    }
+
     @GetMapping({"", "/"})
     public String index() {
         return "redirect:/menu";
