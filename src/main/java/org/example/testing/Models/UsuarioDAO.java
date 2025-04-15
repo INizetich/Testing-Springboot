@@ -4,21 +4,21 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonaDAO {
+public class UsuarioDAO {
     private Connection conn;
 
-    public PersonaDAO() {
+    public UsuarioDAO() {
         conn = Conexion.getInstancia().getConnection();
     }
 
-    public void insertarPersona(Persona persona) {
+    public void insertarPersona(Usuario usuario) {
         String sql = "INSERT INTO personas(nombre,apellido,dni,email) VALUES(?,?,?,?)";
 
         try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-            preparedStatement.setString(1, persona.getNombre());
-            preparedStatement.setString(2, persona.getApellido());
-            preparedStatement.setString(3, persona.getDni());
-            preparedStatement.setString(4, persona.getEmail());
+            preparedStatement.setString(1, usuario.getNombre());
+            preparedStatement.setString(2, usuario.getApellido());
+            preparedStatement.setString(3, usuario.getDni());
+            preparedStatement.setString(4, usuario.getEmail());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -26,22 +26,22 @@ public class PersonaDAO {
     }
 
 
-    public List<Persona> obtenerTodasLasPersonas() {
-        Persona persona = null;
-        List<Persona> listaPersonas = new ArrayList<>();
+    public List<Usuario> obtenerTodasLasPersonas() {
+        Usuario usuario = null;
+        List<Usuario> listaUsuarios = new ArrayList<>();
         String sql = "SELECT * FROM personas";
         try (Statement statement = conn.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
 
             while (rs.next()) {
-                persona = new Persona(rs.getString("nombre"), rs.getString("apellido"), rs.getString("dni"), rs.getString("email"));
-                listaPersonas.add(persona);
+                usuario = new Usuario(rs.getString("nombre"), rs.getString("apellido"), rs.getString("dni"), rs.getString("email"));
+                listaUsuarios.add(usuario);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return listaPersonas;
+        return listaUsuarios;
     }
 
     public boolean eliminarPersona(String dni) {

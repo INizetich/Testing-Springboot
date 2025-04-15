@@ -35,18 +35,18 @@
 
     <!-- Lista de personas -->
     <div class="personas-list">
-        <div th:each="persona, stat : ${personas}" th:if="${stat.index < 10}" class="persona-item">
-            <div class="persona-info">
-                <p><strong>Nombre:</strong> <span data-field="nombre" th:text="${persona.nombre}"></span></p>
-                <p><strong>Apellido:</strong> <span data-field="apellido" th:text="${persona.apellido}"></span></p>
-                <p><strong>DNI:</strong> <span data-field="dni" th:text="${persona.dni}"></span></p>
-                <p><strong>Email:</strong> <span data-field="email" th:text="${persona.email}"></span></p>
+        <div th:each="usuario, stat : ${personas}" th:if="${stat.index < 10}" class="usuario-item">
+            <div class="usuario-info">
+                <p><strong>Nombre:</strong> <span data-field="nombre" th:text="${usuario.nombre}"></span></p>
+                <p><strong>Apellido:</strong> <span data-field="apellido" th:text="${usuario.apellido}"></span></p>
+                <p><strong>DNI:</strong> <span data-field="dni" th:text="${usuario.dni}"></span></p>
+                <p><strong>Email:</strong> <span data-field="email" th:text="${usuario.email}"></span></p>
             </div>
             <div class="action-buttons">
-                <a th:href="@{/editar-persona/__${persona.dni}__}" class="edit-btn">
+                <a th:href="@{/editar-usuario/__${usuario.dni}__}" class="edit-btn">
                     <i class="fas fa-pencil-alt"></i> Editar
                 </a>
-                <button class="delete-btn" th:data-dni="${persona.dni}">
+                <button class="delete-btn" th:data-dni="${usuario.dni}">
                     <i class="fas fa-trash"></i> Eliminar
                 </button>
             </div>
@@ -71,7 +71,7 @@
 <div id="deleteModal" class="modal">
     <div class="modal-content" onclick="event.stopPropagation()">
         <h3>Confirmar Eliminación</h3>
-        <p>Para eliminar esta persona, escriba <strong class="confirm-word">CONFIRMAR</strong> a continuación:</p>
+        <p>Para eliminar esta usuario, escriba <strong class="confirm-word">CONFIRMAR</strong> a continuación:</p>
         <input type="text" id="confirmInput" class="confirm-input" placeholder="Escriba 'CONFIRMAR'">
         <div class="modal-actions">
             <button class="submit-btn secondary" id="cancelBtn">Cancelar</button>

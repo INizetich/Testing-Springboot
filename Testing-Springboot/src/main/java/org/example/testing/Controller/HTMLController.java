@@ -63,7 +63,7 @@ public class HTMLController {
 
         try {
             PersonaController.eliminarPersona(dni);
-            return ResponseEntity.ok(Map.of("message", "Persona eliminada correctamente"));
+            return ResponseEntity.ok(Map.of("message", "Usuario eliminada correctamente"));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("error", "Error al eliminar la persona"));

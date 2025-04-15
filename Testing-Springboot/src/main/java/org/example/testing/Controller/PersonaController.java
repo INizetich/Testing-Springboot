@@ -26,7 +26,7 @@ public class PersonaController {
         String dni = request.getParameter("dni");
         String email = request.getParameter("email");
 
-        // Crear objeto Persona (asumiendo que el ID es autoincremental, se setea en 0 o se ignora)
+        // Crear objeto Usuario (asumiendo que el ID es autoincremental, se setea en 0 o se ignora)
         Persona persona = new Persona(nombre, apellido, dni, email);
 
         // Insertar en la base de datos
